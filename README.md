@@ -74,6 +74,6 @@ login:test / password:test
 
 login:test2 / password:password
 
-## 👤 Author
+## Author
 
 Alina Sukach
