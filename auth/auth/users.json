@@ -1,0 +1,14 @@
+{
+  "admin": {
+    "password": "scrypt:32768:8:1$gkvwVb0TIiOyp4Nw$0df13ff0c9f10e8b39930e51aa359fdcc36ea5bc484b50519b7fe5a7c2517f34df278c4915db68c3dbbbddd316ec0888aa5243cce4754aed62f332164f91e807",
+    "role": "admin"
+  },
+  "test": {
+    "password": "scrypt:32768:8:1$jF8hnrvLBJlrcAsx$01c5d9807fb71bd5747c1ffde18ec0ff592afe0de0f2bd59790e5af9d8fe028a8640143cc742046ec90983b954e1400524f2b20fcb9817c0905beaec77bf794b",
+    "role": "viewer"
+  },
+  "test2": {
+    "password": "scrypt:32768:8:1$xZyCxmyY15vJgY5A$eba70296d83dbec77cd88591c4dcd20087ccac20f8fdb217adc7fb9e990f6352b9a6f8e5c0083aff2302f3fca0c7aa01ca76b436f4350d028e0a4f9a684081f6",
+    "role": "viewer"
+  }
+}(

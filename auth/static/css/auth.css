@@ -1,0 +1,144 @@
+/* ==============================
+   BASE / DARK THEME
+============================== */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #0f1115;
+    color: #e6e6e6;
+}
+
+/* ==============================
+   TOP NAV
+============================== */
+
+.nav {
+    padding: 1rem;
+    background: #0b0d11;
+    border-bottom: 1px solid #222;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ==============================
+   WRAPPER / BOX
+============================== */
+
+.login-wrapper {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 360px;
+    padding: 2rem;
+    background: #161a22;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+
+.login-box.center {
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+/* ==============================
+   FORM
+============================== */
+
+form label {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+form input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.3rem;
+    background: #0f1115;
+    border: 1px solid #2a2f3a;
+    border-radius: 4px;
+    color: #fff;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #4a84ff;
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.btn,
+form button {
+    width: 100%;
+    margin-top: 1.2rem;
+    padding: 0.6rem;
+    background: #4a84ff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover,
+form button:hover {
+    background: #356ef0;
+}
+
+/* ==============================
+   ALERTS
+============================== */
+
+.alert {
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.alert.error,
+.alert-danger {
+    background: #3a1212;
+    color: #ffb3b3;
+    border: 1px solid #702020;
+}
+
+/* ==============================
+   TEXT HELPERS
+============================== */
+
+.text-error {
+    color: #ff5f57;
+}
+
+.text-muted {
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: #777;
+}

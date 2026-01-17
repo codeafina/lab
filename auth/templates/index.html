@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Logged in{% endblock %}
+
+{% block content %}
+<div class="login-wrapper">
+    <div class="login-box center">
+
+        <h2>✅ Login successful</h2>
+
+        <p>
+            User: <strong>{{ session.get('user') }}</strong><br>
+            Role: <strong>{{ session.get('role') }}</strong>
+        </p>
+
+        <form action="{{ url_for('auth.logout') }}" method="get">
+            <button type="submit" class="btn">Logout</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
