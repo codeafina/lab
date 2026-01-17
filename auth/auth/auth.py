@@ -1,8 +1,6 @@
-# auth.py
 from __future__ import annotations
 
 import json
-import secrets
 from datetime import datetime, timedelta
 from pathlib import Path
 from functools import wraps
@@ -23,36 +21,37 @@ USERS_FILE = BASE_DIR / "users.json"
 LOGIN_FAILURES_FILE = BASE_DIR / "login-failures.json"
 
 MAX_FAILURES = 3
-SESSION_TIMEOUT_MINUTES = 15
 
 auth_bp = Blueprint("auth", __name__)
 
 # ==========================================================
-# 📂 INIT FILES
+# 📂 INIT FILES (SAFE)
 # ==========================================================
-
-if not USERS_FILE.exists():
-    raise RuntimeError("users.json is required")
 
 if not LOGIN_FAILURES_FILE.exists():
     LOGIN_FAILURES_FILE.write_text("{}", encoding="utf-8")
 
 # ==========================================================
-# 👤 USERS
+# 👤 USERS (LAZY LOAD — KLUCZ DO TESTÓW)
 # ==========================================================
 
-with USERS_FILE.open(encoding="utf-8") as f:
-    USERS: dict = json.load(f)
+def load_users() -> dict:
+    if not USERS_FILE.exists():
+        return {}
+    try:
+        return json.loads(USERS_FILE.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
 
 
 def get_user(username: str) -> dict | None:
-    rec = USERS.get(username)
+    users = load_users()
+    rec = users.get(username)
     if not rec:
         return None
     if isinstance(rec, str):
         return {"password": rec, "role": "viewer"}
     return rec
-
 
 # ==========================================================
 # 🔐 LOGIN FAILURES
@@ -136,7 +135,6 @@ def login():
     ip = request.remote_addr or "unknown"
     error = None
 
-    # === POST (próba logowania) ===
     if request.method == "POST":
 
         # 1️⃣ IP zablokowane
@@ -146,7 +144,7 @@ def login():
                 return error, 200
             return render_template("login.html", error=error)
 
-        # 2️⃣ dane logowania
+        # 2️⃣ dane
         username = request.form.get("username", "").strip()
         password = request.form.get("password", "")
 
@@ -155,20 +153,25 @@ def login():
         # 3️⃣ sukces
         if user and check_password_hash(user["password"], password):
             session.clear()
-            session.permanent = True
             session["user"] = username
             session["role"] = user["role"]
             reset_failures(ip)
+
+            if current_app.testing:
+                return "LOGIN OK", 200
+
             return redirect(url_for("index"))
 
         # 4️⃣ porażka
         register_failure(ip)
         error = "Invalid credentials"
+
         if current_app.testing:
             return error, 200
+
         return render_template("login.html", error=error)
 
-    # === GET /login ===
+    # GET /login
     if current_app.testing:
         return "LOGIN PAGE", 200
 
