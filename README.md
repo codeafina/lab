@@ -69,7 +69,9 @@ static/      - CSS styles
 ## Test Users
 
 login:admin / password:admin
+
 login:test / password:test
+
 login:test2 / password:password
 
 ## 👤 Author
