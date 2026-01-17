@@ -11,4 +11,4 @@
     "password": "scrypt:32768:8:1$xZyCxmyY15vJgY5A$eba70296d83dbec77cd88591c4dcd20087ccac20f8fdb217adc7fb9e990f6352b9a6f8e5c0083aff2302f3fca0c7aa01ca76b436f4350d028e0a4f9a684081f6",
     "role": "viewer"
   }
-}(
+}
